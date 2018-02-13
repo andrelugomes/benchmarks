@@ -1,5 +1,6 @@
 package br.com.andreluisgomes;
 
+
 import org.openjdk.jmh.annotations.*;
 
 import java.util.ArrayList;
@@ -8,11 +9,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@BenchmarkMode(Mode.AverageTime)
+@BenchmarkMode(Mode.All)
 @OperationsPerInvocation(JMHCollectionsXStream.OPERATIONS)
 public class JMHCollectionsXStream {
 
-    public static final int OPERATIONS = 1000;
+    public static final int OPERATIONS = 10;
 
     static List<Integer> sourceList = new ArrayList<>();
     //WarmUp
@@ -25,11 +26,34 @@ public class JMHCollectionsXStream {
     @Benchmark
     public List<Double> pureJava() {
         List<Double> result = new ArrayList<>(sourceList.size() / 2 + 1);
+        for (int i = 0 ; i < sourceList.size(); i++) {
+            Integer integer = sourceList.get(i);
+            if (integer % 2 == 0){
+                result.add(Math.sqrt(integer));
+            }
+        }
+        return result;
+    }
+
+    @Benchmark
+    public List<Double> enhancedForEach() {
+        List<Double> result = new ArrayList<>(sourceList.size() / 2 + 1);
         for (Integer i : sourceList) {
             if (i % 2 == 0){
                 result.add(Math.sqrt(i));
             }
         }
+        return result;
+    }
+
+    @Benchmark
+    public List<Double> java8ForEach() {
+        List<Double> result = new ArrayList<>(sourceList.size() / 2 + 1);
+        sourceList.forEach(i -> {
+            if (i % 2 == 0){
+                result.add(Math.sqrt(i));
+            }
+        });
         return result;
     }
 
