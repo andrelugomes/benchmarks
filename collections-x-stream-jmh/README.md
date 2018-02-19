@@ -11,5 +11,5 @@ $ mvn clean install
 ```
 
 ```
-$ java -jar target/collections-x-stream-1.0.jar
+$ java -jar target/collections-x-stream-jmh-1.0.jar
 ```

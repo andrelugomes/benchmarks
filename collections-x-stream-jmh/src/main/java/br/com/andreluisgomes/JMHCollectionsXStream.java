@@ -9,11 +9,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@BenchmarkMode(Mode.All)
+@BenchmarkMode({Mode.AverageTime,Mode.SampleTime})
 @OperationsPerInvocation(JMHCollectionsXStream.OPERATIONS)
 public class JMHCollectionsXStream {
 
-    public static final int OPERATIONS = 10;
+    public static final int OPERATIONS = 2;
 
     static List<Integer> sourceList = new ArrayList<>();
     //WarmUp
