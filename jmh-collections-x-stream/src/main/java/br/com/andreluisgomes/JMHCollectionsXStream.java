@@ -8,12 +8,14 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+@Fork(value = 10) // executions
+@Warmup(iterations = 5) //warmup
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@BenchmarkMode({Mode.AverageTime,Mode.SampleTime})
+@BenchmarkMode({Mode.AverageTime,Mode.Throughput})
 @OperationsPerInvocation(JMHCollectionsXStream.OPERATIONS)
 public class JMHCollectionsXStream {
 
-    public static final int OPERATIONS = 2;
+    public static final int OPERATIONS = 1000;
 
     static List<Integer> sourceList = new ArrayList<>();
     //WarmUp

@@ -3,10 +3,6 @@
 ## Usage
 
 ```
-@Benchmark
-```
-
-```
 $ mvn clean install
 ```
 

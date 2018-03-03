@@ -50,9 +50,10 @@
 
     <modules>
         <module>arraylist-x-linkedlist</module>
-        <module>collections-x-stream</module>
-        <module>collections-x-stream-jmh</module>
         <module>list-x-set</module>
+        <module>collections-x-stream</module>
+        <module>jmh-collections-x-stream</module>
+        <module>jmh-simple</module>
     </modules>
 
 </project>
