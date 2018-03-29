@@ -12,11 +12,11 @@ public class ListXSet {
 		System.out.println("Iniciando Teste com :"+ total +"-> ArrayList ...");
 	    
 	    Collection<Integer> arrayList = new ArrayList<>();
+
+		for (int i = 0; i < total; i++) {
+			arrayList.add(i);
+		}
 	    long inicio = System.currentTimeMillis();
-	    
-	    for (int i = 0; i < total; i++) {
-	      arrayList.add(i);
-	    }
 	    
 	    for (int i = 0; i < total; i++) {
 	      arrayList.contains(i);
@@ -29,11 +29,14 @@ public class ListXSet {
 	    System.out.println("Iniciando Teste com :"+ total +"-> HashSet ...");
 	    
 	    Collection<Integer> hashSet = new HashSet<>();
+
+		for (int i = 0; i < total; i++) {
+			hashSet.add(i);
+		}
+		
 	    long inicioHashSet = System.currentTimeMillis();
 	    
-	    for (int i = 0; i < total; i++) {
-	      hashSet.add(i);
-	    }
+
 	    
 	    for (int i = 0; i < total; i++) {
 	      hashSet.contains(i);

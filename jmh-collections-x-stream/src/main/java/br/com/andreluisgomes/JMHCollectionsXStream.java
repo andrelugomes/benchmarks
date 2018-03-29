@@ -1,22 +1,29 @@
 package br.com.andreluisgomes;
 
 
-import org.openjdk.jmh.annotations.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Fork;
+import org.openjdk.jmh.annotations.Measurement;
+import org.openjdk.jmh.annotations.Mode;
+import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Threads;
+import org.openjdk.jmh.annotations.Warmup;
+
 @Threads(Threads.MAX)
-@Fork(value = 2)
+@Fork(value = 1)
 @Warmup(iterations = 2)
-@Measurement(iterations = 5)
+@Measurement(iterations = 2)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @BenchmarkMode({Mode.AverageTime,Mode.Throughput})
 public class JMHCollectionsXStream {
 
-    public static final int OPERATIONS = 10000;
+    public static final int OPERATIONS = 10000000;
 
     static List<Integer> sourceList = new ArrayList<>();
     //WarmUp
@@ -79,6 +86,15 @@ public class JMHCollectionsXStream {
 
     @Benchmark
     public List<Double> parallelStream() {
+        return sourceList.stream()
+                .parallel()
+                .filter(i -> i % 2 == 0)
+                .map(Math::sqrt)
+                .collect(Collectors.toList());
+    }
+
+    @Benchmark
+    public List<Double> parallelStreamToCollection() {
         return sourceList.stream()
                 .parallel()
                 .filter(i -> i % 2 == 0)
